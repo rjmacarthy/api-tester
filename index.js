@@ -58,21 +58,20 @@ const getGroupAgain = (times) => {
         .set('Content-Type', 'application/json')
         .set('Rezi-Api-Version', '1.0')
         .set('Authorization', token)
-        .end((err, {
-            body
-        }) => {
-            logger('Group member length = ' + body.Members.length)
+        .end((err, res) => {
+            logger('Group member length = ' + res.body.Members.length)
             try {
-                expect(body.Members.length).to.equal(originalMemberLength + 1);
-                originalMemberLength = body.Members.length;
+                expect(res.body.Members.length).to.equal(originalMemberLength + 1);
+                originalMemberLength = res.body.Members.length;
                 logger('Test Passed!');
                 logger('------------------------------');
                 if (runTimes !== times - 1) {
                     runTest(times);
                     runTimes++
                 }
+                debugger;
             } catch (e) {
-                logger(e, body);
+                logger(e, res.body, res.headers);
                 return;
             }
 

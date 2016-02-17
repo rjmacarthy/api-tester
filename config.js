@@ -15,11 +15,11 @@ const payload = {
     "RelationshipType": {}
 };
 
-const groupId = 536108;
+const groupId = 428913;
 
-const getgroup = 'https://core-api-systest.dezrez.com/api/group/536108';
+const getgroup = 'https://core-api-systest.dezrez.com/api/group/428913';
 
-const updategroup = 'https://core-api-systest.dezrez.com/api/group/536108/addgroupmember';
+const updategroup = 'https://core-api-systest.dezrez.com/api/group/428913/addgroupmember';
 
 export {
     payload,
