@@ -1,5 +1,4 @@
 import request from 'superagent';
-import supertest from 'supertest';
 import * as config from './config';
 import lodash from 'lodash';
 import $ from 'jquery';
@@ -78,9 +77,30 @@ const getGroupAgain = (times) => {
         });
 }
 
+const addSearchingRole = () => {
+    _.forEach(config.groupIds, (id) => {
+        request.post(config.addSalesSearch(id))
+            .set('Content-Type', 'application/json')
+            .set('Rezi-Api-Version', '1.0')
+            .set('Authorization', token)
+            .send(config.groupSearchPayLoad)
+            .end((err, {
+                body
+            }) => {
+                logger('Group Role Added!')
+            });
+    })
+}
+
 $('#start').on('click', () => {
     logger('Running test ' + $('#times').val() + ' times');
     logger('------------------------------');
     token = $('#token').val();
     runTest($('#times').val());
 });
+
+$('#addSearchRoles').on('click', () => {
+    token = $('#token').val();
+    addSearchingRole();
+});
+
